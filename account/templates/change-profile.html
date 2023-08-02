@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>Change profile</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+
+
+    <!-- personal deatail section start -->
+    <section class="contact-page register-page">
+        <div class="container">
+            {% if request.user.image.url is not None %}
+            <img src="{{ request.user.image.url }}" alt="" width="100" height="90" border-radius="50%"> 
+            {% else %}
+            <img src="{% static 'images/images.jpeg' %}" alt="" width="100" height="90" border-radius="50%"> 
+            {% endif %}
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <br>
+                    <h3>PERSONAL DETAIL</h3>
+                    <form class="theme-form" method="post">
+                        {% csrf_token %}
+                        {{ form.errors }}
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="name">First Name</label>
+                                {{form.first_name}}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email">Last Name</label>
+                                <h6>{{ form.last_name }}</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="review">Phone number</label>
+                                <h6>{{ form.phone_number }}</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email">Email</label>
+                                <h6>{{ form.email }}</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="review">Bio</label>
+                                <h6>{{ form.bio }}</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="review">Password</label>
+                                <h6><a href="{% url 'account:change_password' %}">Change Password</a></h6>
+                                <h6><a href="{% url 'account:password-reset' %}">Forget Password</a></h6>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-sm btn-solid" type="submit">Save setting</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section ends -->
+
+
+    <!-- Section ends -->
+
+{% endblock %}
+   

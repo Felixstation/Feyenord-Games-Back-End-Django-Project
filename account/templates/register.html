@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>create account</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">create account</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+
+
+    <!--section start-->
+    <section class="register-page section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>create account</h3>
+                    <div class="theme-card">
+                        <form class="theme-form" method="post">
+                            {% csrf_token %}
+                            {{ form.errors }}
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="username">Username</label>
+                                    <!-- <input type="text" class="form-control" id="fname" placeholder="First Name"
+                                        required=""> -->
+                                    {{form.username}}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="First Name">First Name</label>
+                                    <!-- <input type="password" class="form-control" id="lname" placeholder="Last Name"
+                                        required=""> -->
+                                    {{form.first_name}}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="Last Name">Last Name</label>
+                                    <!-- <input type="password" class="form-control" id="lname" placeholder="Last Name"
+                                        required=""> -->
+                                    {{form.last_name}}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="review">Phone</label>
+                                    <!-- <input type="password" class="form-control" id="lname" placeholder="Last Name"
+                                        required=""> -->
+                                    {{form.phone_number}}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="email">email</label>
+                                    <!-- <input type="text" class="form-control" id="email" placeholder="Email" required=""> -->
+                                    {{form.email}}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="review">Password</label>
+                                    <!-- <input type="password" class="form-control" id="review"
+                                        placeholder="Enter your password" required=""> -->
+                                    {{form.password}}
+                
+                                </div><button class="btn btn-solid" type="submit">create Account</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Section ends-->
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>customer's login</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">login</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+
+
+    <!--section start-->
+    <section class="login-page section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Login</h3>
+                    <div class="theme-card">
+                        <form class="theme-form" method="post">
+                            {% include 'messages.html' %}
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <!-- <input type="text" class="form-control" id="email" placeholder="Email" required=""> -->
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group">
+                                <label for="review">Password</label>    
+                                <!-- <input type="password" class="form-control" id="review"
+                                    placeholder="Enter your password" required=""> -->
+                                {{ form.password }}
+                            </div>
+                            <button  class="btn btn-solid" type="submit" id="loginForm">Login</button>
+                            <a href="{% url 'account:password-reset' %}">Forget Password?</a>
+                            <div class="wrapper">
+                                    <a href="{% url 'account:social:begin' 'facebook' %}" class="icon facebook">
+                                      <div class="tooltip">Facebook</div>
+                                      <span><i class="fab fa-facebook-f"></i></span>
+                                    </a>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 right-login">
+                    <h3>New Customer</h3>
+                    <div class="theme-card authentication-right">
+                        <h6 class="title-font">Create A Account</h6>
+                        <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be
+                            able to order from our shop. To start shopping click register.</p><a href="{% url 'account:register' %}"
+                            class="btn btn-solid">Create an Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Section ends-->
+
+
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

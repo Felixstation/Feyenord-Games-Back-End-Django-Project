@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>search</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">search</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+
+
+    <!--section start-->
+    <section class="authentication-page">
+        <div class="container">
+            <section class="search-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3">
+                            <form class="form-header" id="SearchForm" method="get">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                        placeholder="Search Products......" name="search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-solid"><i class="fa fa-search"></i>Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="searchbar">
+                        
+                    </div>
+                
+                
+                </div>
+            </section>
+        </div>
+    </section>
+    <!-- section end -->
+
+
+{% endblock %}
+
+

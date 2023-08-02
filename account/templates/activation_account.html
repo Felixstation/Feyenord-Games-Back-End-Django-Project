@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+    <!-- Tab product -->
+    <div class="title1 section-t-space">
+        <img src="{% static 'Download/256x256bb.jpg' %}">
+        <br/>
+        <h2 class="title-inner1"><br/>Activation Mail Sent! Please Check Your Email</h2>
+        <h3><a href="{% url 'core:index' %}">Return Home</a></h3>
+    </div>
+    <!-- Tab product end -->
+
+
+{% endblock %}

@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Multikart - Multi-purpopse E-commerce Html Template</title>
+{% endblock %}
+
+
+{% block content %}
+   <!-- breadcrumb start -->
+   <div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>Checkout Page</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- breadcrumb End -->
+
+
+    <!-- section start -->
+    <section class="section-b-space">
+        <div class="container">
+            <div class="checkout-page">
+                <div class="checkout-form">
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12 col-xs-12">
+                                <div class="checkout-title"  id ="shipping-info">
+                                    <h3>Billing Details</h3>
+                                </div>
+                                <form class="row check-out" id="form" >
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <div class="field-label">Address</div>
+                                        <input type="text" name="address" value="" placeholder="Address">
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <div class="field-label">Town/City</div>
+                                        <input type="text" name="city" value="" placeholder="Town/City">
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-6 col-xs-12">
+                                        <div class="field-label">State / County</div>
+                                        <input type="text" name="county" value="" placeholder="State / County">
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-6 col-xs-12">
+                                        <div class="field-label">Zipcode</div>
+                                        <input type="text" name="zipcode" value="" placeholder="Zipcode">
+
+                                    </div>
+                                    
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 col-xs-12">
+                                <div class="checkout-details">
+                                    <div class="order-box">
+                                        <div class="title-box">
+                                            <div>Product <span>Total</span></div>
+                                        </div>
+                                        <ul class="qty">
+                                            {% for item in items %}
+                                            <li>{{ item.product.product_id.name }} 
+                                                {% if item.product.color_id.name is not None %}
+                                                {{ item.product.color_id.name }}
+                                                {% endif %}
+                                                {% if item.product.storage_id.name is not None %}
+                                                {{ item.product.storage_id.name }}
+                                                {% endif %} × {{ item.quantity }} <span>${{ item.product.price }}</span></li>
+                                                {% endfor %}
+                                        </ul>
+                                        <ul class="total">
+                                            <li>Total <span class="count">${{ order.get_cart_total|floatformat:2 }}</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="payment-box">
+                                        <div class="upper-box">
+                                            <div class="payment-options">
+                                            </div>
+                                            
+                                            <div id="paypal-button-container">
+
+                                            </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section end -->
+
+<script src="https://www.paypal.com/sdk/js?client-id=AQhc_sbCMOOVoGpGfWd-oIwJTwd9wu1yKIOd7c1fCvxKHDJjHrfdg2Q8th7GvzL291o9FOJ2wx2tmqPa&currency=USD"></script>
+
+<script>
+    var total = '{{order.get_cart_total}}'
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+    // Set up the transaction
+    createOrder: function(data, actions) {
+              return actions.order.create({
+                  purchase_units: [{
+                      amount: {
+                          value: parseFloat(total).toFixed(2)
+                      }
+                  }]
+              });
+          },
+          // Finalize the transaction
+          onApprove: function(data, actions) {
+              return actions.order.capture().then(function(details) {
+                  // Show a success message to the buyer
+                  submitFormData()
+              });
+          }
+      }).render('#paypal-button-container');
+  </script>
+
+<script type="text/javascript">
+    var shipping = '{{ order.shipping }}'
+
+    if(shipping == 'False'){
+        document.getElementById('shipping-info').innerHTML = ''
+    }
+
+    var form = document.getElementById('form')
+
+    form.addEventListener('submit' , function(){
+        e.preventDefault()
+        console.log('Form Submitted...')
+        document.getElementById('form-button').classList.add('hidden')
+        document.getElementById('payment-info').classList.remove('hidden')
+    })
+
+    // document.getElementById('make-payment').addEventListener('click' , function(e){
+    //     submitFormData()
+    // })
+
+
+    function submitFormData(){
+        console.log('Payment Button Clicked')
+        
+        var userFormData = {
+				'total':total,
+			} 
+        
+        var shippingInfo = {
+				'address':null,
+				'city':null,
+				'county':null,
+				'zipcode':null,
+			}
+
+
+        if (shipping != 'False'){
+	    	shippingInfo.address = form.address.value
+		    shippingInfo.city = form.city.value
+		    shippingInfo.county = form.county.value
+		    shippingInfo.zipcode = form.zipcode.value
+	    }
+
+        console.log('Shipping Info:', shippingInfo)
+
+        var url = '/process_order/'
+
+        fetch(url , {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({ 'form':userFormData, 'shipping':shippingInfo})
+        })
+
+        .then((response) => response.json())
+        .then((data) => {
+                            console.log('Success:'  , data);
+                            alert('Transaction Completed!');
+                            window.location.href = "{% url 'order:order-success' %}"
+        } )
+
+    
+    }
+
+
+
+
+</script>
+
+{% endblock %}
+

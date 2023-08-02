@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-23 22:18+0400\n"
+"PO-Revision-Date: 2023-07-23 22:20+0000\n"
+"Last-Translator: Fərid Hüseynli <faridhuseynli480@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
+
+#: .\core\templates\base.html:79
+msgid "Welcome to Our store Feyenord Games"
+msgstr "Feyenord Games-ə Xoş Gəlmisiniz!"
+
+#: .\core\templates\base.html:92
+msgid "My profile"
+msgstr "Məlumatlarım"
+
+#: .\core\templates\base.html:93
+msgid "Logout"
+msgstr "Hesabdan Çıx"
+
+#: .\core\templates\base.html:98
+msgid "Login"
+msgstr "Daxil Ol"
+
+#: .\core\templates\base.html:99
+msgid "Register"
+msgstr "Qeydiyyatdan keç"
+
+#: .\core\templates\index.html:64 .\core\templates\navbar.html:118
+msgid "Games"
+msgstr "Oyunlar"
+
+#: .\core\templates\index.html:68 .\core\templates\index.html:355
+#: .\core\templates\navbar.html:128
+msgid "Consoles"
+msgstr "Konsollar"
+
+#: .\core\templates\index.html:70 .\core\templates\index.html:427
+#: .\core\templates\navbar.html:132
+msgid "Accessories"
+msgstr "Aksesuarlar"
+
+#: .\core\templates\index.html:73 .\core\templates\navbar.html:135
+msgid "Contact"
+msgstr "Kontakt"
+
+#: .\core\templates\index.html:239
+msgid "newsletter"
+msgstr "Yeniliklər"
+
+#: .\core\templates\index.html:252
+msgid "subscribe"
+msgstr "Abunə Ol"
+
+#: .\core\templates\index.html:297
+msgid "Top 2 games this week!"
+msgstr "Həftənin Ən Yaxşı 2 Oyunu!"
+
+#: .\core\templates\index.html:505
+msgid "New Products"
+msgstr "Yeni Məhsullar"
+
+#: .\core\views.py:67
+msgid "Your Information Succesfully Sent!"
+msgstr "Məlumatınız Uğurla Göndərildi!"
+
+#: .\core\views.py:71
+msgid "Please Check Your Information!"
+msgstr "Zəhmət olmasa məlumatlarınızı yoxlayın!"

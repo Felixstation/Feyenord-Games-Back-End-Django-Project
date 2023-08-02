@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                         <li class="breadcrumb-item"><a href="{% url 'account:profile' %}">Profile</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+    <!-- personal deatail section start -->
+    <section class="contact-page register-page">
+        <div class="container">
+            <div>
+            <img  class="profile-picture" src="{{request.user.image.url}}" width="100px" height="100px"    alt="">
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="d-flex  align-items-center "  >
+                        <h3 style="padding-top: 21px;">PERSONAL DETAIL</h3>
+                   </div>
+                    {% if request.user.is_authenticated %}
+                    <form class="theme-form" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'messages.html' %}
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <!-- <label type=" " for="name">{{request.user.first_name}}</label> -->
+                                <!-- <input type="text" class="form-control" id="name" value="{{request.user.first_name}}"
+                                    required=""> -->
+                                {{form.first_name}}
+                            </div>
+                            <div class="col-md-6">
+                                <!-- <label for="email">{{request.user.last_name}}</label> -->
+                                <!-- <input type="text" class="form-control" id="last-name" value="{{request.user.last_name}}" required=""> -->
+                                {{form.last_name}}
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <label for="review">{{request.user.username}}</label> -->
+                                <!-- <input type="text" class="form-control" id="review" value="{{request.user.username}}"
+                                    required="">  -->
+                                    {{form.username}}
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <label for="email">{{request.user.email}}</label> -->
+                                <!-- <input type="text" class="form-control" id="email" value="{{request.user.email}}" required=""> -->
+                                {{form.email}}
+                            </div>
+                            <div class="col-md-4">
+                                {{form.image}}
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-sm btn-solid" type="submit">Update Profile</button>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="{% url 'account:change_password' %}">Change your Password</a>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="{% url 'account:password-reset' %}">Forget your Password</a>
+                            </div>
+                            <!-- <div class="col-md-12">
+                                <label for="review">Write Your Message</label>
+                                <textarea class="form-control mb-0" placeholder="Write Your Message"
+                                    id="exampleFormControlTextarea1" rows="6"></textarea>
+                            </div> -->
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section ends -->
+{% endblock %}
